@@ -64,22 +64,7 @@ public final class CloneStep extends AbstractStepImpl {
   @Extension
   public static final class DescriptorImpl extends AbstractStepDescriptorImpl {
 
-    //    public static final boolean ignoreSslErrors = HttpRequest.DescriptorImpl.ignoreSslErrors;
-//    public static final HttpMode httpMode                  = HttpRequest.DescriptorImpl.httpMode;
-//    public static final String   httpProxy                 = HttpRequest.DescriptorImpl.httpProxy;
-//    public static final String   validResponseCodes        = HttpRequest.DescriptorImpl.validResponseCodes;
-//    public static final String   validResponseContent      = HttpRequest.DescriptorImpl.validResponseContent;
-//    public static final MimeType acceptType                = HttpRequest.DescriptorImpl.acceptType;
-//    public static final MimeType contentType               = HttpRequest.DescriptorImpl.contentType;
-//    public static final int      timeout                   = HttpRequest.DescriptorImpl.timeout;
-//    public static final Boolean  consoleLogResponseBody    = HttpRequest.DescriptorImpl.consoleLogResponseBody;
-//    public static final Boolean  quiet                     = HttpRequest.DescriptorImpl.quiet;
-//    public static final String   authentication            = HttpRequest.DescriptorImpl.authentication;
-//    public static final String   requestBody               = HttpRequest.DescriptorImpl.requestBody;
-//    public static final List <HttpRequestNameValuePair> customHeaders = Collections.<HttpRequestNameValuePair>emptyList();
-//    public static final String outputFile = "";
-//    public static final ResponseHandle responseHandle = ResponseHandle.STRING;
-//
+
     public DescriptorImpl() {
       super(Execution.class);
     }
@@ -89,40 +74,7 @@ public final class CloneStep extends AbstractStepImpl {
     public String getFunctionName() {
       return "snowglobe_clone";
     }
-//
-//    @Override
-//    public String getDisplayName() {
-//      return "Perform an HTTP Request and return a response object";
-//    }
-//
-//    public ListBoxModel doFillHttpModeItems() {
-//      return HttpMode.getFillItems();
-//    }
-//
-//    public ListBoxModel doFillAcceptTypeItems() {
-//      return MimeType.getContentTypeFillItems();
-//    }
-//
-//    public ListBoxModel doFillContentTypeItems() {
-//      return MimeType.getContentTypeFillItems();
-//    }
-//
-//    public ListBoxModel doFillResponseHandleItems() {
-//      ListBoxModel items = new ListBoxModel();
-//      for (ResponseHandle responseHandle : ResponseHandle.values()) {
-//        items.add(responseHandle.name());
-//      }
-//      return items;
-//    }
-//
-//    public ListBoxModel doFillAuthenticationItems(@AncestorInPath Item project,
-//                                                  @QueryParameter String url) {
-//      return HttpRequest.DescriptorImpl.fillAuthenticationItems(project, url);
-//    }
-//
-//    public FormValidation doCheckValidResponseCodes(@QueryParameter String value) {
-//      return HttpRequest.DescriptorImpl.checkValidResponseCodes(value);
-//    }
+
 
   }
 

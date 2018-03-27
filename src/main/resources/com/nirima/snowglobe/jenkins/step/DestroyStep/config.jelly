@@ -1,0 +1,11 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+    <f:entry field="globeId" title="SnowGlobe Id to destroy">
+        <f:textbox />
+    </f:entry>
+
+    <f:entry field="remove" title="Also Remove SnowGlobe ?">
+        <f:booleanRadio />
+    </f:entry>
+
+</j:jelly>
