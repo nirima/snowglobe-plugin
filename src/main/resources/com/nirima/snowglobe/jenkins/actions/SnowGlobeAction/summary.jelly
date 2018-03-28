@@ -2,7 +2,7 @@
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler"
          xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson"
          xmlns:f="/lib/form" xmlns:i="jelly:fmt">
-    <t:summary icon="/plugin/snowglobe-jenkins-plugin/images/32x32/snow-globe.png">
+    <t:summary icon="/plugin/snowglobe-plugin/images/32x32/snow-globe.png">
 
         <h1>SnowGlobe</h1>
         <j:set var="instance" value="${it}"/>

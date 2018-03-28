@@ -22,7 +22,7 @@ public class ApplyCommand extends GlobeCommand<Void> {
       String url =  getGlobeBaseUrl() + "/apply";
 
       HttpPost method = new HttpPost(url);
-      method.setEntity(new StringEntity(this.body, "text/plain"));
+      method.setEntity(new StringEntity(this.body, "UTF-8"));
       final HttpResponse response =  client.execute(method, getContext());
 
     }
