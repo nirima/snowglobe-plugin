@@ -2,16 +2,20 @@ package com.nirima.snowglobe.jenkins.actions;
 
 
 import com.nirima.snowglobe.jenkins.Consts;
+import com.nirima.snowglobe.jenkins.SnowGlobePluginConfiguration;
+import com.nirima.snowglobe.jenkins.api.remote.DestroyCommand;
+import com.nirima.snowglobe.jenkins.api.remote.RemoveCommand;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 import java.io.Serializable;
-import java.util.logging.Logger;
 
 import hudson.Extension;
 import hudson.model.Action;
 import hudson.model.Describable;
 import hudson.model.Descriptor;
-import hudson.model.Run;
-import hudson.model.listeners.RunListener;
 import jenkins.model.Jenkins;
 /**
  * SnowGlobes linked to a job (action badge)
@@ -19,7 +23,7 @@ import jenkins.model.Jenkins;
 public class SnowGlobeAction implements Action, Serializable,
                                                                  Describable<SnowGlobeAction> {
 
-  private static final Logger LOGGER = Logger.getLogger(SnowGlobeAction.class.getName());
+  private static final Logger LOGGER = LoggerFactory.getLogger(SnowGlobeAction.class);
 
   private String id;
 
@@ -33,6 +37,20 @@ public class SnowGlobeAction implements Action, Serializable,
 
   public boolean destroyOnDelete() {
     return true;
+  }
+
+  public void onDelete() {
+    if (destroyOnDelete() ) {
+      String baseUrl = SnowGlobePluginConfiguration.get().getServerUrl();
+
+      try {
+        new DestroyCommand(baseUrl, getId()).execute();
+        new RemoveCommand(baseUrl, getId()).execute();
+      } catch (IOException e) {
+        LOGGER.error("Error deleting run {}", getId(), e);
+      }
+
+    }
   }
 
   public static class ActionData {

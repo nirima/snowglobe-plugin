@@ -18,18 +18,7 @@ public class SnowGlobeListener extends RunListener<Run<?,?>> {
     super.onDeleted(run);
     SnowGlobeAction action  = run.getAction(SnowGlobeAction.class);
     if( action != null ) {
-      if (action.destroyOnDelete() ) {
-        String baseUrl = SnowGlobePluginConfiguration.get().getServerUrl();
-
-        try {
-          new DestroyCommand(baseUrl, action.getId()).execute();
-          new RemoveCommand(baseUrl, action.getId()).execute();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-
-
-      }
+      action.onDelete();
     }
   }
 }
