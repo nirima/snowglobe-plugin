@@ -6,16 +6,16 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>2.33</version>
+        <version>3.6</version>
         <relativePath/>
     </parent>
     <groupId>com.nirima.snowglobe.jenkins</groupId>
-    <artifactId>snowglobe-plugin</artifactId>
+    <artifactId>snowglobe</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>hpi</packaging>
     <properties>
         <!-- Baseline Jenkins version you use to build the plugin. Users must have this version or newer to run. -->
-        <jenkins.version>2.7.3</jenkins.version>
+        <jenkins.version>2.107</jenkins.version>
         <!-- Other properties you may want to use:
           ~ java.level: set to 6 if your jenkins.version <= 1.611
           ~ jenkins-test-harness.version: Jenkins Test Harness version you use to test the plugin. For Jenkins version >= 1.580.1 use JTH 2.0 or higher.
@@ -32,7 +32,7 @@
 
 
     </properties>
-    <name>SnowGlobe Jenkins Plugin</name>
+    <name>SnowGlobe Plugin</name>
     <description>Control SnowGlobe servers from within Jenkins builds</description>
     <url>https://wiki.jenkins-ci.org/display/JENKINS/TODO+Plugin</url>
     <!-- The default licence for Jenkins OSS Plugins is MIT. Substitute for the applicable one if needed. -->
