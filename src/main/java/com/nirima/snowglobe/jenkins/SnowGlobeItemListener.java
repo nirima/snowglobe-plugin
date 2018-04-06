@@ -2,8 +2,6 @@ package com.nirima.snowglobe.jenkins;
 
 import com.nirima.snowglobe.jenkins.actions.SnowGlobeAction;
 
-import org.jenkinsci.plugins.workflow.job.WorkflowJob;
-
 import hudson.Extension;
 import hudson.model.Actionable;
 import hudson.model.Failure;
