@@ -3,7 +3,7 @@ package com.nirima.snowglobe.jenkins.step;
 import com.nirima.snowglobe.jenkins.SnowGlobePluginConfiguration;
 import com.nirima.snowglobe.jenkins.actions.SnowGlobeAction;
 import com.nirima.snowglobe.jenkins.api.remote.ApplyCommand;
-import com.nirima.snowglobe.jenkins.api.remote.CloneCommand;
+import com.nirima.snowglobe.jenkins.api.remote.GetVariablesCommand;
 
 import org.jenkinsci.plugins.workflow.steps.AbstractStepDescriptorImpl;
 import org.jenkinsci.plugins.workflow.steps.AbstractStepImpl;
@@ -19,14 +19,13 @@ import hudson.model.Item;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 
-public final class ApplyStep extends AbstractStepImpl {
+public final class GetVariablesStep extends AbstractStepImpl {
 
   String globeId;
 
-  boolean createAction;
 
   @DataBoundConstructor
-  public ApplyStep() {
+  public GetVariablesStep() {
 
   }
 
@@ -37,15 +36,6 @@ public final class ApplyStep extends AbstractStepImpl {
   @DataBoundSetter
   public void setGlobeId(String sourceId) {
     this.globeId = sourceId;
-  }
-
-
-  public boolean isCreateAction() {
-    return createAction;
-  }
-  @DataBoundSetter
-  public void setCreateAction(boolean createAction) {
-    this.createAction = createAction;
   }
 
   @Override
@@ -64,16 +54,15 @@ public final class ApplyStep extends AbstractStepImpl {
     //
     @Override
     public String getFunctionName() {
-      return "snowglobe_apply";
+      return "snowglobe_get_variables";
     }
-
 
   }
 
   public static final class Execution extends AbstractSynchronousNonBlockingStepExecution<String> {
 
     @Inject
-    private transient ApplyStep step;
+    private transient GetVariablesStep step;
 
     @StepContextParameter
     private transient Run<?, ?> run;
@@ -84,18 +73,12 @@ public final class ApplyStep extends AbstractStepImpl {
     protected String run() throws Exception {
 
       String baseUrl = SnowGlobePluginConfiguration.get().getServerUrl();
-      new ApplyCommand(baseUrl, step.globeId).execute();
+      new GetVariablesCommand(baseUrl, step.globeId).execute();
 
-      if (step.isCreateAction()) {
-        SnowGlobeAction action = new SnowGlobeAction(step.globeId);
-
-        run.addAction(action);
-      }
       return "OK";
     }
 
     private static final long serialVersionUID = 1L;
-
 
     public Item getProject() {
       return run.getParent();

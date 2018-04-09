@@ -3,7 +3,7 @@ package com.nirima.snowglobe.jenkins.step;
 import com.nirima.snowglobe.jenkins.SnowGlobePluginConfiguration;
 import com.nirima.snowglobe.jenkins.actions.SnowGlobeAction;
 import com.nirima.snowglobe.jenkins.api.remote.ApplyCommand;
-import com.nirima.snowglobe.jenkins.api.remote.CloneCommand;
+import com.nirima.snowglobe.jenkins.api.remote.SetVariablesCommand;
 
 import org.jenkinsci.plugins.workflow.steps.AbstractStepDescriptorImpl;
 import org.jenkinsci.plugins.workflow.steps.AbstractStepImpl;
@@ -19,14 +19,14 @@ import hudson.model.Item;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 
-public final class ApplyStep extends AbstractStepImpl {
+public final class SetVariablesStep extends AbstractStepImpl {
 
   String globeId;
+  String variables;
 
-  boolean createAction;
 
   @DataBoundConstructor
-  public ApplyStep() {
+  public SetVariablesStep() {
 
   }
 
@@ -39,13 +39,13 @@ public final class ApplyStep extends AbstractStepImpl {
     this.globeId = sourceId;
   }
 
-
-  public boolean isCreateAction() {
-    return createAction;
+  public String getVariables() {
+    return variables;
   }
+  
   @DataBoundSetter
-  public void setCreateAction(boolean createAction) {
-    this.createAction = createAction;
+  public void setVariables(String variables) {
+    this.variables = variables;
   }
 
   @Override
@@ -64,7 +64,7 @@ public final class ApplyStep extends AbstractStepImpl {
     //
     @Override
     public String getFunctionName() {
-      return "snowglobe_apply";
+      return "snowglobe_set_variables";
     }
 
 
@@ -73,7 +73,7 @@ public final class ApplyStep extends AbstractStepImpl {
   public static final class Execution extends AbstractSynchronousNonBlockingStepExecution<String> {
 
     @Inject
-    private transient ApplyStep step;
+    private transient SetVariablesStep step;
 
     @StepContextParameter
     private transient Run<?, ?> run;
@@ -84,13 +84,8 @@ public final class ApplyStep extends AbstractStepImpl {
     protected String run() throws Exception {
 
       String baseUrl = SnowGlobePluginConfiguration.get().getServerUrl();
-      new ApplyCommand(baseUrl, step.globeId).execute();
+      new SetVariablesCommand(baseUrl, step.globeId, step.variables).execute();
 
-      if (step.isCreateAction()) {
-        SnowGlobeAction action = new SnowGlobeAction(step.globeId);
-
-        run.addAction(action);
-      }
       return "OK";
     }
 
