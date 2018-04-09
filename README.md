@@ -11,14 +11,25 @@ The operations are relatively simple:
 ### Clone
 ```groovy
 snowglobe_clone createAction: true, sourceId: 'ci-template', targetId: 'new-globe-name'
-```       
+```
+
+### Set Variables
+```groovy
+snowglobe_set_variables globeId: 'my-globe', variables: 'key="value"'
+```
+
+### Get Variables
+```groovy
+data = snowglobe_get_variables  globeId: 'my-globe'
+```
+ 
 ### Apply
 ```groovy
-snowglobe_apply createAction: true, globeId: 'my-globe', settings: 'key=value'
+snowglobe_apply createAction: true, globeId: 'my-globe'
 ```
 ### State
 ```groovy
-data = snowglobe_state createAction: false, globeId: 'my-globe', settings: 'key=value'
+data = snowglobe_state createAction: false, globeId: 'my-globe'
 ```
 
 ### Destroy
