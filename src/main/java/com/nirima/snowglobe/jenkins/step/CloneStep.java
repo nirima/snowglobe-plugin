@@ -1,8 +1,12 @@
 package com.nirima.snowglobe.jenkins.step;
 
+import com.google.common.collect.Sets;
+
 import com.nirima.snowglobe.jenkins.SnowGlobePluginConfiguration;
 import com.nirima.snowglobe.jenkins.actions.SnowGlobeAction;
+import com.nirima.snowglobe.jenkins.api.remote.AddTagCommand;
 import com.nirima.snowglobe.jenkins.api.remote.CloneCommand;
+import com.nirima.snowglobe.jenkins.api.remote.SetTagsCommand;
 
 import org.jenkinsci.plugins.workflow.steps.AbstractStepDescriptorImpl;
 import org.jenkinsci.plugins.workflow.steps.AbstractStepImpl;
@@ -10,6 +14,8 @@ import org.jenkinsci.plugins.workflow.steps.AbstractSynchronousNonBlockingStepEx
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
+
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -99,6 +105,10 @@ public final class CloneStep extends AbstractStepImpl {
 
         run.addAction(action);
       }
+
+      // Also tag it with 'jenkins' so we know where it's come from.
+      new AddTagCommand(baseUrl, step.targetId, "jenkins");
+
       return "OK";
     }
 

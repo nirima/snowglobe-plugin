@@ -7,6 +7,23 @@
             <f:textbox />
         </f:entry>
 
+        <f:entry title="Maximum Age" field="maximumAge" help="/plugin/snowglobe/help/help-maximumAge.html"
+                 description="Optional maximum age of Snowglobes">
+            <f:textbox />
+        </f:entry>
+
+        <f:entry title="Maximum Empty Age" field="maximumEmptyAge" help="/plugin/snowglobe/help/help-maximumEmptyAge.html"
+                 description="Optional maximum age of empty Snowglobes before they are removed">
+            <f:textbox />
+        </f:entry>
+
+
+
+        <f:entry title="Maximum Number" field="maximumCount"
+                 description="Optional maximum number of SnowGlobes">
+            <f:textbox />
+        </f:entry>
+
     </f:section>
 
 </j:jelly>
