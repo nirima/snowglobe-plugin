@@ -107,7 +107,7 @@ public final class CloneStep extends AbstractStepImpl {
       }
 
       // Also tag it with 'jenkins' so we know where it's come from.
-      new AddTagCommand(baseUrl, step.targetId, "jenkins");
+      new AddTagCommand(baseUrl, step.targetId, "jenkins").execute();
 
       return "OK";
     }

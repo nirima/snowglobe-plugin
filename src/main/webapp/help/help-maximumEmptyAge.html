@@ -1,0 +1,15 @@
+Enter the maximum age you would like empty SnowGlobes to remain, after which they will be removed.
+
+This is the final cleanup for items that are no longer needed; Max Age and Max Count won't remove the snowglobe, it will only tear them down. Set this
+value to a low number (Say 1h) so that they are cleaned relatively quickly if no longer needed.
+
+This distinction is so that usecases where it's possible that you might need to re-start a system after it has gone out of scope, so that we don't initially delete those SnowGlobes.
+
+Specify as hours, days, minutes; e.g
+
+2d
+8h
+1w
+
+(2 days, 8 hours, 1 week respectively)
+
