@@ -17,6 +17,8 @@ public class RemoveCommand extends GlobeCommand {
   public Void execute() throws IOException {
     try(CloseableHttpClient client = getClient()) {
 
+      log.info("Remove Globe {}", id);
+
       String url = getGlobeBaseUrl();
 
       HttpDelete method = new HttpDelete(url);

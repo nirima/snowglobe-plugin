@@ -18,6 +18,8 @@ public class ApplyCommand extends GlobeCommand<Void> {
   public Void execute() throws IOException {
     try(CloseableHttpClient client = getClient()) {
 
+      log.info("Snowglobe apply for id {}", id);
+
       String url =  getGlobeBaseUrl() + "/apply";
 
       HttpPut method = new HttpPut(url);

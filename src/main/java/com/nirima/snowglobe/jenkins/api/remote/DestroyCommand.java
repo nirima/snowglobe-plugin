@@ -16,6 +16,8 @@ public class DestroyCommand extends GlobeCommand {
   public Void execute() throws IOException {
     try(CloseableHttpClient client = getClient()) {
 
+      log.info("Destroy globe {}", id);
+
       String url = getGlobeBaseUrl() + "/destroy";
 
       HttpPost method = new HttpPost(url);

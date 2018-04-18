@@ -24,6 +24,8 @@ public class CloneCommand extends GlobeCommand {
 
       try(CloseableHttpClient client = getClient()) {
 
+        log.info("Snowglobe clone {} to {}", id, newName);
+
         String url = getGlobeBaseUrl() + "/clone/" + newName ;
 
         HttpPost method = new HttpPost(url);

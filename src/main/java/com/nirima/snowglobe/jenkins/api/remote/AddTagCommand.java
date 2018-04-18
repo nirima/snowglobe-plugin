@@ -24,6 +24,8 @@ public class AddTagCommand extends GlobeCommand<Void> {
   public Void execute() throws IOException {
     try(CloseableHttpClient client = getClient()) {
 
+      log.info("Add Tag {} to Globe {}", tag, id);
+
       String url =  getGlobeBaseUrl() + "/tag/" + this.tag;
 
       HttpPut method = new HttpPut(url);
